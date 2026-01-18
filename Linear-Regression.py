@@ -1,6 +1,7 @@
 import pandas as pd
 from sklearn.linear_model import LinearRegression
 import matplotlib.pyplot as plt
+plt.ticklabel_format(style='plain', axis='y')
 d=pd.read_csv("house_price_single_linear_regression.csv")
 plt.xlabel("Area_sqft")
 plt.ylabel("Price")

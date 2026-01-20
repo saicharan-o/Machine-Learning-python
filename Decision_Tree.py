@@ -15,8 +15,8 @@ print(x.head())
 x_n=x.drop(x[["company","job","degree","experience"]],axis="columns")
 print(x_n)
 print(y)
-from sklearn import tree
-md=tree.DecisionTreeClassifier()
+from sklearn.tree import DecisionTreeClassifier
+md=DecisionTreeClassifier()
 md.fit(x_n,y)
 print(md.score(x_n,y))
 print("Prediction 1: ",md.predict(pd.DataFrame({"company_n":[0],"job_n":[2],"degree_n":[1],"experience_n":[0]})))

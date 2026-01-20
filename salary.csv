@@ -1,0 +1,39 @@
+company,job,degree,experience,salary_gt_100k
+google,software engineer,bachelors,senior,1
+google,software engineer,masters,senior,1
+google,software engineer,phd,senior,0
+google,software engineer,bachelors,junior,1
+google,software engineer,masters,junior,0
+google,data scientist,masters,senior,1
+google,data scientist,phd,senior,0
+google,data scientist,bachelors,junior,0
+google,hr,bachelors,junior,0
+google,hr,masters,senior,0
+facebook,software engineer,bachelors,senior,1
+facebook,software engineer,masters,senior,1
+facebook,software engineer,bachelors,junior,0
+facebook,data scientist,masters,senior,1
+facebook,data scientist,bachelors,junior,0
+facebook,hr,bachelors,junior,0
+facebook,hr,masters,senior,1
+amazon,software engineer,bachelors,senior,1
+amazon,software engineer,masters,senior,1
+amazon,software engineer,bachelors,junior,0
+amazon,data scientist,masters,senior,1
+amazon,data scientist,bachelors,junior,0
+amazon,hr,bachelors,junior,0
+amazon,hr,masters,senior,1
+startup,software engineer,bachelors,senior,1
+startup,software engineer,masters,senior,1
+startup,software engineer,bachelors,junior,1
+startup,data scientist,masters,senior,0
+startup,data scientist,bachelors,junior,1
+startup,hr,bachelors,junior,1
+startup,hr,masters,senior,1
+microsoft,software engineer,bachelors,senior,1
+microsoft,software engineer,masters,senior,1
+microsoft,software engineer,bachelors,junior,0
+microsoft,data scientist,masters,senior,1
+microsoft,data scientist,bachelors,junior,0
+microsoft,hr,bachelors,junior,0
+microsoft,hr,masters,senior,1

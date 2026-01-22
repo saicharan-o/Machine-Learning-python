@@ -2,6 +2,14 @@ import pandas as pd
 import matplotlib.pyplot as plt
 d=pd.read_csv("Student_SVM.csv")
 print(d.head())
+plt.scatter(d["study_hours"],d["attendance"],color="orange",marker='s')
+plt.xlabel("study_hours")
+plt.ylabel("attendance")
+plt.show()
+plt.scatter(d["practice_tests"],d["screen_time"],color='purple',marker='+')
+plt.xlabel("practice_tests")
+plt.ylabel("screen_time")
+plt.show()
 d0=d[d.target==0]
 print(d0)
 d1=d[d.target==1]

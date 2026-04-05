@@ -43,9 +43,8 @@ def print_prediction(title, company, job, degree, exp, pred):
     print(f"Prediction  : {salary}")
     print("-" * 40)
 
-# Prediction 2
 p2 = md.predict(pd.DataFrame({"company_n":[1],"job_n":[1],"degree_n":[0],"experience_n":[0]}))
-print_prediction("Prediction 2", 1,1,0,0, p2[0])
+print_prediction("Prediction 1", 1,1,0,0, p2[0])
 
 # Prediction 3
 p3 = md.predict(pd.DataFrame({"company_n":[2],"job_n":[2],"degree_n":[2],"experience_n":[1]}))

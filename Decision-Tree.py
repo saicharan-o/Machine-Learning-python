@@ -46,9 +46,8 @@ def print_prediction(title, company, job, degree, exp, pred):
 p2 = md.predict(pd.DataFrame({"company_n":[1],"job_n":[1],"degree_n":[0],"experience_n":[0]}))
 print_prediction("Prediction 1", 1,1,0,0, p2[0])
 
-# Prediction 3
 p3 = md.predict(pd.DataFrame({"company_n":[2],"job_n":[2],"degree_n":[2],"experience_n":[1]}))
-print_prediction("Prediction 3", 2,2,2,1, p3[0])
+print_prediction("Prediction 2", 2,2,2,1, p3[0])
 
 # Prediction 4
 p4 = md.predict(pd.DataFrame({"company_n":[1],"job_n":[2],"degree_n":[0],"experience_n":[1]}))

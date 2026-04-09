@@ -11,7 +11,6 @@ class ErrorBoundary extends React.Component {
   }
 
   componentDidCatch(error, errorInfo) {
-    // You could log this to an external service like Sentry
     console.error("Uncaught error:", error, errorInfo);
   }
 

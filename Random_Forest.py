@@ -46,18 +46,15 @@ plt.title("Age vs Monthly Spend Trend-Figure-8")
 plt.show()
 
 from pandas.plotting import scatter_matrix
-
 scatter_matrix(
     df[["Age","Annual_Income","Spending_Score","Monthly_Spend"]],
     figsize=(10,10)
 )
 plt.suptitle("Relationship Between Age, Income, Spending Score and Monthly Spend-Figure-9", fontsize=16)
 plt.show()
-
 df["Purchased"].value_counts().plot(kind="pie", autopct="%1.1f%%")
 plt.title("Purchased Distribution-Figure-10")
 plt.show()
-
 corr = df.corr()
 
 plt.imshow(corr)

@@ -24,11 +24,9 @@ plt.xlabel("Age")
 plt.ylabel("Monthly Spend")
 plt.title("Age vs Monthly Spend (Colored by Purchased)-Figure-3")
 plt.show()
-
 df["Purchased"].value_counts().plot(kind="bar")
 plt.title("Purchased Count-Figure-4")
 plt.show()
-
 df.groupby("Purchased")["Monthly_Spend"].mean().plot(kind="bar")
 plt.title("Avg Monthly Spend vs Purchased-Figure-5")
 plt.show()

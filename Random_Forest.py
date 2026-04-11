@@ -14,13 +14,11 @@ plt.xlabel("Age")
 plt.ylabel("Purchased")
 plt.title("Age vs Purchased-Figure-1")
 plt.show()
-
 plt.scatter(df["Annual_Income"], df["Spending_Score"])
 plt.xlabel("Annual Income")
 plt.ylabel("Spending Score")
 plt.title("Income vs Spending-Figure-2")
 plt.show()
-
 plt.scatter(df["Age"], df["Monthly_Spend"], c=df["Purchased"])
 plt.xlabel("Age")
 plt.ylabel("Monthly Spend")

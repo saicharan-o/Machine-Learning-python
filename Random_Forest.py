@@ -7,10 +7,8 @@ from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
 
 df = pd.read_csv("Random_Forest_file.csv")
-
 X = df.drop("Purchased", axis=1)
 y = df["Purchased"]
-
 plt.scatter(df["Age"], df["Purchased"])
 plt.xlabel("Age")
 plt.ylabel("Purchased")

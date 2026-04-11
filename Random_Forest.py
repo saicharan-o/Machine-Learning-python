@@ -71,16 +71,12 @@ plt.title("Relationship of Age and Spending Score with Purchase Outcome-Figure-1
 plt.show()
 
 
-X_tr, X_t, y_tr, y_t = train_test_split(
-    X, y, test_size=0.2, random_state=42
-)
-
+X_tr, X_t, y_tr, y_t = train_test_split(X, y, test_size=0.2, random_state=42)
 md = RandomForestClassifier(
     n_estimators=200,
     max_depth=10,
     random_state=42
 )
-
 md.fit(X_tr, y_tr)
 
 y_p = md.predict(X_t)

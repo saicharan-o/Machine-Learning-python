@@ -30,17 +30,14 @@ plt.show()
 df.groupby("Purchased")["Monthly_Spend"].mean().plot(kind="bar")
 plt.title("Avg Monthly Spend vs Purchased-Figure-5")
 plt.show()
-
 plt.hist(df["Age"], bins=10)
 plt.xlabel("Age")
 plt.ylabel("Frequency")
 plt.title("Age Distribution-Figure-6")
 plt.show()
-
 df.boxplot(column="Monthly_Spend", by="Purchased")
 plt.title("Monthly Spend by Purchased-Figure-7")
 plt.show()
-
 df_sorted = df.sort_values("Age")
 plt.plot(df_sorted["Age"], df_sorted["Monthly_Spend"])
 plt.xlabel("Age")

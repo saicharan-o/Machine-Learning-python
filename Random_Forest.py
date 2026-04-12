@@ -68,7 +68,6 @@ plt.legend()
 plt.title("Relationship of Age and Spending Score with Purchase Outcome-Figure-12")
 plt.show()
 
-
 X_tr, X_t, y_tr, y_t = train_test_split(X, y, test_size=0.2, random_state=42)
 md = RandomForestClassifier(
     n_estimators=200,
@@ -76,7 +75,6 @@ md = RandomForestClassifier(
     random_state=42
 )
 md.fit(X_tr, y_tr)
-
 y_p = md.predict(X_t)
 print(y_p)
 print("Accuracy:", accuracy_score(y_t, y_p))
@@ -89,7 +87,6 @@ m = pd.DataFrame({
 }).sort_values(by="Importance", ascending=False)
 
 print("\nFeature Importance:\n", m)
-
 plt.figure(figsize=(10, 6))
 
 plt.scatter(

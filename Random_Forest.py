@@ -88,13 +88,11 @@ m = pd.DataFrame({
 
 print("\nFeature Importance:\n", m)
 plt.figure(figsize=(10, 6))
-
 plt.scatter(
     m["Importance"],
     m["Feature"],
     s=200
 )
-
 plt.xlabel("Importance Score")
 plt.ylabel("Feature")
 plt.title("Feature Importance (Scatter Plot) - Random Forest-Figure-13")

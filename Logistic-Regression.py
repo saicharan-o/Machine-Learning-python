@@ -10,10 +10,13 @@ from sklearn.model_selection import train_test_split
 
 X_tr,X_t,y_tr,y_t=train_test_split(d[["Overtime_Hours"]],d.Left_Company,train_size=0.8,random_state=42)
 print(X_t)
+
 from sklearn.linear_model import LogisticRegression
+
 m=LogisticRegression()
 m.fit(X_tr,y_tr)
 print(X_t)
+
 y_P=m.predict(X_t)
 print("Intercept: ",m.intercept_)
 print("Coefficient: ",m.coef_)

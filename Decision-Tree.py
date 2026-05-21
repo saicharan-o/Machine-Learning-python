@@ -1,8 +1,11 @@
 import pandas as pd
+
 d=pd.read_csv("salary.csv")
 x=d.drop(d[["salary_gt_100k"]],axis="columns")
 y=d[["salary_gt_100k"]]
+
 from sklearn.preprocessing import LabelEncoder
+
 l_c=LabelEncoder()
 l_j=LabelEncoder()
 l_d=LabelEncoder()

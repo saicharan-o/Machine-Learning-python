@@ -16,13 +16,16 @@ from sklearn.linear_model import LogisticRegression
 m=LogisticRegression()
 m.fit(X_tr,y_tr)
 print(X_t)
+
 y_P=m.predict(X_t)
+
 print("Intercept: ",m.intercept_)
 print("Coefficient: ",m.coef_)
 print("Prediction-Probability: ",m.predict_proba(X_t))
 print(y_P)
 print("Accurecy Score: ",m.score(X_t,y_t))
 print(X_t)
+
 import math
 def predict_fun(Hours):
     z = m.coef_[0][0] * Hours + m.intercept_[0]

@@ -26,6 +26,7 @@ c=confusion_matrix(y_t,y_P)
 print(c)
 
 import seaborn as sn
+
 plt.figure(figsize = (10,7))
 sn.heatmap(c, annot=True)
 plt.xlabel('Predicted')

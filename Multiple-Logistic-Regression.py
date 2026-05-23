@@ -1,8 +1,10 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+
 d = pd.read_csv("Student.csv")
 x=d[["Study_Hours","Attendance_Percent","Previous_Score","Backlogs"]]
 y=d.Result
+
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 X_tr,X_t,y_tr,y_t=train_test_split(x,y,test_size=0.3)

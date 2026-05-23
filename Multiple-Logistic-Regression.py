@@ -7,8 +7,10 @@ y=d.Result
 
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
+
 X_tr,X_t,y_tr,y_t=train_test_split(x,y,test_size=0.3)
 m=LogisticRegression()
+
 m.fit(X_tr,y_tr)
 print(m.score(X_t,y_t))
 print("Prediction 1: ",m.predict(pd.DataFrame({"Study_Hours":[18],"Attendance_Percent":[65],"Previous_Score":[70],"Backlogs":[7]})))

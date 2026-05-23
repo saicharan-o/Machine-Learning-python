@@ -18,11 +18,13 @@ print("Prediction 2: ",m.predict(pd.DataFrame({"Study_Hours":[20],"Attendance_Pe
 print("Prediction 3: ",m.predict(pd.DataFrame({"Study_Hours":[5],"Attendance_Percent":[77],"Previous_Score":[20],"Backlogs":[5]})))
 print("Prediction 4: ",m.predict(pd.DataFrame({"Study_Hours":[1],"Attendance_Percent":[45],"Previous_Score":[59],"Backlogs":[3]})))
 print("Prediction 5: ",m.predict(pd.DataFrame({"Study_Hours":[10],"Attendance_Percent":[30],"Previous_Score":[67],"Backlogs":[0]})))
-
 y_P=m.predict(X_t)
+
 from sklearn.metrics import confusion_matrix
+
 c=confusion_matrix(y_t,y_P)
 print(c)
+
 import seaborn as sn
 plt.figure(figsize = (10,7))
 sn.heatmap(c, annot=True)

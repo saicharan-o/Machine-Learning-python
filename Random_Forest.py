@@ -9,11 +9,13 @@ from sklearn.metrics import confusion_matrix
 df = pd.read_csv("Random_Forest_file.csv")
 X = df.drop("Purchased", axis=1)
 y = df["Purchased"]
+
 plt.scatter(df["Age"], df["Purchased"])
 plt.xlabel("Age")
 plt.ylabel("Purchased")
 plt.title("Age vs Purchased-Figure-1")
 plt.show()
+
 plt.scatter(df["Annual_Income"], df["Spending_Score"])
 plt.xlabel("Annual Income")
 plt.ylabel("Spending Score")

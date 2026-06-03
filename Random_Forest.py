@@ -21,11 +21,13 @@ plt.xlabel("Annual Income")
 plt.ylabel("Spending Score")
 plt.title("Income vs Spending-Figure-2")
 plt.show()
+
 plt.scatter(df["Age"], df["Monthly_Spend"], c=df["Purchased"])
 plt.xlabel("Age")
 plt.ylabel("Monthly Spend")
 plt.title("Age vs Monthly Spend (Colored by Purchased)-Figure-3")
 plt.show()
+
 df["Purchased"].value_counts().plot(kind="bar")
 plt.title("Purchased Count-Figure-4")
 plt.show()

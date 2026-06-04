@@ -45,6 +45,7 @@ plt.show()
 df.boxplot(column="Monthly_Spend", by="Purchased")
 plt.title("Monthly Spend by Purchased-Figure-7")
 plt.show()
+
 df_sorted = df.sort_values("Age")
 plt.plot(df_sorted["Age"], df_sorted["Monthly_Spend"])
 plt.xlabel("Age")
@@ -53,6 +54,7 @@ plt.title("Age vs Monthly Spend Trend-Figure-8")
 plt.show()
 
 from pandas.plotting import scatter_matrix
+
 scatter_matrix(
     df[["Age","Annual_Income","Spending_Score","Monthly_Spend"]],
     figsize=(10,10)

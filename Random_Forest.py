@@ -61,9 +61,11 @@ scatter_matrix(
 )
 plt.suptitle("Relationship Between Age, Income, Spending Score and Monthly Spend-Figure-9", fontsize=16)
 plt.show()
+
 df["Purchased"].value_counts().plot(kind="pie", autopct="%1.1f%%")
 plt.title("Purchased Distribution-Figure-10")
 plt.show()
+
 corr = df.corr()
 plt.imshow(corr)
 plt.colorbar()

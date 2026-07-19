@@ -28,8 +28,8 @@ print(X_t)
 
 import math
 def predict_fun(Hours):
-    z = m.coef_[0][0] * Hours + m.intercept_[0]
-    return 1 / (1 + math.exp(-z))
+    z=m.coef_[0][0]*Hours+m.intercept_[0]
+    return 1/(1+math.exp(-z))
 Hours=90
 print("Hours: 90",predict_fun(Hours))
 Hours=87

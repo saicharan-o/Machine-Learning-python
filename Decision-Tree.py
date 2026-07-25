@@ -1,66 +1,70 @@
+"""
+Decision Tree Classifier - Salary Prediction
+=============================================
+Encodes categorical employee data (company, job, degree, experience) and
+trains a Decision Tree classifier to predict whether an employee's salary
+exceeds 100K, then prints structured predictions for multiple scenarios.
+
+Author : Sai Charan
+"""
+
 import pandas as pd
-d=pd.read_csv("salary.csv")
-x=d.drop(d[["salary_gt_100k"]],axis="columns")
-y=d[["salary_gt_100k"]]
-
 from sklearn.preprocessing import LabelEncoder
-l_c=LabelEncoder()
-l_j=LabelEncoder()
-l_d=LabelEncoder()
-l_e=LabelEncoder()
+from sklearn.tree import DecisionTreeClassifier
 
-x["company_n"]=l_c.fit_transform(x["company"])
-x["job_n"]=l_j.fit_transform(x["job"])
-x["degree_n"]=l_d.fit_transform(x["degree"])
-x["experience_n"]=l_e.fit_transform(x["experience"])
+# ── Load & Prepare Data ───────────────────────────────────────────────────────
+df = pd.read_csv("salary.csv")
 
-print(x.head())
-x_n=x.drop(x[["company","job","degree","experience"]],axis="columns")
-print(x_n)
+X = df.drop(columns=["salary_gt_100k"])
+y = df[["salary_gt_100k"]]
+
+# ── Encode Categorical Features ───────────────────────────────────────────────
+enc_company    = LabelEncoder()
+enc_job        = LabelEncoder()
+enc_degree     = LabelEncoder()
+enc_experience = LabelEncoder()
+
+X["company_n"]    = enc_company.fit_transform(X["company"])
+X["job_n"]        = enc_job.fit_transform(X["job"])
+X["degree_n"]     = enc_degree.fit_transform(X["degree"])
+X["experience_n"] = enc_experience.fit_transform(X["experience"])
+
+X_encoded = X.drop(columns=["company", "job", "degree", "experience"])
+print(X_encoded)
 print(y)
 
-from sklearn.tree import DecisionTreeClassifier
-md=DecisionTreeClassifier()
-md.fit(x_n,y)
-print(md.score(x_n,y))
+# ── Train Model ───────────────────────────────────────────────────────────────
+model = DecisionTreeClassifier()
+model.fit(X_encoded, y)
+print(f"Training Accuracy: {model.score(X_encoded, y):.2%}")
 
-def decode_salary(val):
-    return ">100K" if val==1 else "<=100K"
+# ── Helper Functions ──────────────────────────────────────────────────────────
+def decode_salary(val: int) -> str:
+    """Return a human-readable salary band label."""
+    return ">100K" if val == 1 else "<=100K"
 
-def decode_input(company,job,degree,exp):
-    return {
-        "company":l_c.inverse_transform([company])[0],
-        "job":l_j.inverse_transform([job])[0],
-        "degree":l_d.inverse_transform([degree])[0],
-        "experience":l_e.inverse_transform([exp])[0]
-    }
 
-def print_prediction(title,company,job,degree,exp,pred):
-    info=decode_input(company, job, degree, exp)
-    salary=decode_salary(pred)
+def print_prediction(title: str, company: int, job: int, degree: int, exp: int) -> None:
+    """Predict and print salary category for the given encoded inputs."""
+    input_df = pd.DataFrame({
+        "company_n": [company], "job_n": [job],
+        "degree_n": [degree], "experience_n": [exp]
+    })
+    pred = model.predict(input_df)[0]
 
-    print(f"{title}")
-    print(f"Company     :{info['company'].title()}")
-    print(f"Role        :{info['job'].title()}")
-    print(f"Degree      :{info['degree'].title()}")
-    print(f"Experience  :{info['experience'].title()}")
-    print(f"Prediction  :{salary}")
-    print("-"*40)
+    print(f"\n{title}")
+    print(f"  Company    : {enc_company.inverse_transform([company])[0].title()}")
+    print(f"  Role       : {enc_job.inverse_transform([job])[0].title()}")
+    print(f"  Degree     : {enc_degree.inverse_transform([degree])[0].title()}")
+    print(f"  Experience : {enc_experience.inverse_transform([exp])[0].title()}")
+    print(f"  Salary     : {decode_salary(pred)}")
+    print("-" * 40)
 
-p2=md.predict(pd.DataFrame({"company_n":[1],"job_n":[1],"degree_n":[0],"experience_n":[0]}))
-print_prediction("Prediction 1",1,1,0,0,p2[0])
 
-p3=md.predict(pd.DataFrame({"company_n":[2],"job_n":[2],"degree_n":[2],"experience_n":[1]}))
-print_prediction("Prediction 2",2,2,2,1,p3[0])
-
-p4=md.predict(pd.DataFrame({"company_n":[1],"job_n":[2],"degree_n":[0],"experience_n":[1]}))
-print_prediction("Prediction3",1,2,0,1,p4[0])
-
-p5=md.predict(pd.DataFrame({"company_n":[0],"job_n":[1],"degree_n":[2],"experience_n":[1]}))
-print_prediction("Prediction 4",0,1,2,1,p5[0])
-
-p6=md.predict(pd.DataFrame({"company_n":[2],"job_n":[2],"degree_n":[1],"experience_n":[1]}))
-print_prediction("Prediction 5",2,2,1,1,p6[0])
-
-p7=md.predict(pd.DataFrame({"company_n":[1],"job_n":[2],"degree_n":[0],"experience_n":[1]}))
-print_prediction("Prediction 6",1,2,0,1,p7[0])    
+# ── Run Predictions ───────────────────────────────────────────────────────────
+print_prediction("Prediction 1", company=1, job=1, degree=0, exp=0)
+print_prediction("Prediction 2", company=2, job=2, degree=2, exp=1)
+print_prediction("Prediction 3", company=1, job=2, degree=0, exp=1)
+print_prediction("Prediction 4", company=0, job=1, degree=2, exp=1)
+print_prediction("Prediction 5", company=2, job=2, degree=1, exp=1)
+print_prediction("Prediction 6", company=1, job=2, degree=0, exp=1)

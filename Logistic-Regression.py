@@ -1,40 +1,53 @@
-import pandas as pd
-import matplotlib.pyplot as plt
+"""
+Logistic Regression - Employee Overtime & Attrition
+=====================================================
+Predicts whether an employee will leave the company based on overtime hours
+worked, using a logistic regression model with a manual sigmoid verification.
 
-d=pd.read_csv("Hours.csv")
-print(d)
-
-plt.scatter(d.Overtime_Hours,d.Left_Company,marker='+',color='black')
-plt.show()
-
-from sklearn.model_selection import train_test_split
-
-X_tr,X_t,y_tr,y_t=train_test_split(d[["Overtime_Hours"]],d.Left_Company,train_size=0.8,random_state=42)
-print(X_t)
-
-from sklearn.linear_model import LogisticRegression
-m=LogisticRegression()
-m.fit(X_tr,y_tr)
-print(X_t)
-
-y_P=m.predict(X_t)
-
-print("Intercept: ",m.intercept_)
-print("Coefficient: ",m.coef_)
-print("Prediction-Probability: ",m.predict_proba(X_t))
-print(y_P)
-print("Accurecy Score: ",m.score(X_t,y_t))
-print(X_t)
+Author : Sai Charan
+"""
 
 import math
-def predict_fun(Hours):
-    z=m.coef_[0][0]*Hours+m.intercept_[0]
-    return 1/(1+math.exp(-z))
-Hours=90
-print("Hours: 90",predict_fun(Hours))
-Hours=87
-print("Hours: 87",predict_fun(Hours))
-Hours=40
-print("Hours: 40",predict_fun(Hours))    
-Hours=35
-print("Hours: 35",predict_fun(Hours)) 
+
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+
+# ── Load Data ─────────────────────────────────────────────────────────────────
+df = pd.read_csv("Hours.csv")
+print(df)
+
+# ── Visualise Raw Data ────────────────────────────────────────────────────────
+plt.scatter(df.Overtime_Hours, df.Left_Company, marker='+', color='black')
+plt.xlabel("Overtime Hours")
+plt.ylabel("Left Company (1 = Yes)")
+plt.title("Overtime Hours vs Employee Attrition")
+plt.show()
+
+# ── Train / Test Split ────────────────────────────────────────────────────────
+X_train, X_test, y_train, y_test = train_test_split(
+    df[["Overtime_Hours"]], df.Left_Company,
+    train_size=0.8, random_state=42
+)
+
+# ── Train Model ───────────────────────────────────────────────────────────────
+model = LogisticRegression()
+model.fit(X_train, y_train)
+
+# ── Evaluate ──────────────────────────────────────────────────────────────────
+y_pred = model.predict(X_test)
+print("Intercept            :", model.intercept_)
+print("Coefficient          :", model.coef_)
+print("Prediction Proba     :", model.predict_proba(X_test))
+print("Predictions          :", y_pred)
+print("Accuracy Score       :", model.score(X_test, y_test))
+
+# ── Manual Sigmoid Verification ───────────────────────────────────────────────
+def predict_probability(hours: int) -> float:
+    """Return the probability of leaving the company given overtime hours."""
+    z = model.coef_[0][0] * hours + model.intercept_[0]
+    return 1 / (1 + math.exp(-z))
+
+for hrs in [90, 87, 40, 35]:
+    print(f"Hours: {hrs:>2}  →  P(leave) = {predict_probability(hrs):.4f}")

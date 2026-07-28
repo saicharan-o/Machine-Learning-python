@@ -1,41 +1,31 @@
-"""
-Logistic Regression - Employee Overtime & Attrition
-=====================================================
-Predicts whether an employee will leave the company based on overtime hours
-worked, using a logistic regression model with a manual sigmoid verification.
-
-Author : Sai Charan
-"""
-
 import math
-
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 
-# ── Load Data ─────────────────────────────────────────────────────────────────
+#Load Data
 df = pd.read_csv("Hours.csv")
 print(df)
 
-# ── Visualise Raw Data ────────────────────────────────────────────────────────
+#Visualise Raw Data
 plt.scatter(df.Overtime_Hours, df.Left_Company, marker='+', color='black')
 plt.xlabel("Overtime Hours")
 plt.ylabel("Left Company (1 = Yes)")
 plt.title("Overtime Hours vs Employee Attrition")
 plt.show()
 
-# ── Train / Test Split ────────────────────────────────────────────────────────
+#Train / Test Split
 X_train, X_test, y_train, y_test = train_test_split(
     df[["Overtime_Hours"]], df.Left_Company,
     train_size=0.8, random_state=42
 )
 
-# ── Train Model ───────────────────────────────────────────────────────────────
+#Train Model
 model = LogisticRegression()
 model.fit(X_train, y_train)
 
-# ── Evaluate ──────────────────────────────────────────────────────────────────
+#Evaluate
 y_pred = model.predict(X_test)
 print("Intercept            :", model.intercept_)
 print("Coefficient          :", model.coef_)
@@ -43,9 +33,8 @@ print("Prediction Proba     :", model.predict_proba(X_test))
 print("Predictions          :", y_pred)
 print("Accuracy Score       :", model.score(X_test, y_test))
 
-# ── Manual Sigmoid Verification ───────────────────────────────────────────────
+#Manual Sigmoid Verification
 def predict_probability(hours: int) -> float:
-    """Return the probability of leaving the company given overtime hours."""
     z = model.coef_[0][0] * hours + model.intercept_[0]
     return 1 / (1 + math.exp(-z))
 
